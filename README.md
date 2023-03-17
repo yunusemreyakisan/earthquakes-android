@@ -1,0 +1,1 @@
+# depremler-mvvm-android
