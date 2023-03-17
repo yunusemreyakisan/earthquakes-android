@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="item"
+            type="com.yakisan.depremapi.model.DepremModel" />
+        <variable
+            name="listener"
+            type="com.yakisan.depremapi.adapter.ClickListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        app:cardCornerRadius="5dp"
+        android:backgroundTint="@color/earthquake_item_color"
+        android:layout_marginBottom="5dp"
+        android:onClickListener="@{listener::clicked}"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <!-- string -->
+            <ImageView
+                android:id="@+id/ivMapImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:layout_marginEnd="10dp"
+                android:src="@{item.mapImage}"
+                android:contentDescription="Map Image" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_height="match_parent">
+
+                <!-- double -->
+                <TextView
+                    android:id="@+id/tvMagnitude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="30sp"
+                    android:text="@{Double.toString(item.magnitude)}"
+                    android:textColor="@color/red"
+                    android:paddingHorizontal="10dp" />
+
+                <!-- string -->
+                <TextView
+                    android:id="@+id/tvRegion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="@{item.region}"
+                    android:paddingHorizontal="10dp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
