@@ -1,0 +1,82 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'com.yakisan.depremapi'
+    compileSdk 33
+
+
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+
+
+    defaultConfig {
+        applicationId "com.yakisan.depremapi"
+        minSdk 29
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+        compileSdkPreview "UpsideDownCake"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    def lifeCycleExtensionVersion = '1.1.1'
+    def rxJavaVersion = '2.2.8' //RxJava
+    def rxAndroidVersion = '2.1.1'
+    def glideVersion = '4.15.0' //Glide for Images
+    def retrofitVersion = '2.9.0' //Retrofit for API
+
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    //GSON
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    //Coroutine
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    //Lifecycle
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0"
+    implementation "android.arch.lifecycle:extensions:$lifeCycleExtensionVersion"
+    kapt "com.android.databinding:compiler:3.1.4"
+    //RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.9.0"
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+
+}

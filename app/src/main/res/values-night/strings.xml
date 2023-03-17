@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="acil_durum">Acil Durum</string>
+    <string name="son_depremler">Son Depremler</string>
+</resources>
