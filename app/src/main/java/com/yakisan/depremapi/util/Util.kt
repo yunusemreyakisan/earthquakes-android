@@ -1,9 +1,8 @@
 package com.yakisan.depremapi.util
 
-import android.app.Activity
-import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
@@ -20,7 +19,7 @@ fun loadFragment(fragment: Fragment, replace : Int, manager : FragmentManager){
 
 //ImageView sınıfına eklenti yapma
 fun ImageView.utilDownloadImage(url: String?, placeholder: CircularProgressDrawable) {
-    val options = RequestOptions().placeholder(placeholder).error(R.mipmap.ic_launcher)
+    val options = RequestOptions().placeholder(placeholder).error(R.color.white)
 
     Glide.with(context)
         .setDefaultRequestOptions(options) //Ozellestirilmis placeholder tanimi
@@ -35,4 +34,23 @@ fun utilPlaceholderOlustur(context: Context): CircularProgressDrawable {
         centerRadius = 40f //Yaricap
         start()
     }
+}
+
+
+@BindingAdapter("android:downloadImage")
+fun gorselIndir(view: ImageView, url: String?){
+    view.utilDownloadImage(url, utilPlaceholderOlustur(view.context))
+}
+
+//Tarih ve Saat ayrımı
+fun tarihiGetir(zaman : String) : String{
+    val kesilmis_zaman = zaman.split(" ")
+    val tarih = kesilmis_zaman[0]
+    return tarih
+}
+
+fun saatiGetir(zaman : String) : String{
+    val kesilmis_zaman = zaman.split(" ")
+    val saat = kesilmis_zaman[1]
+    return saat
 }
