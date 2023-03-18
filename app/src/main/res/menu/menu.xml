@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/alert"
-        android:title="@string/acil_durum"
+        android:id="@+id/latest_earthquake"
+        android:title="Son Deprem"
         android:icon="@drawable/ic_alert"/>
 
     <item
         android:id="@+id/list"
-        android:title="@string/son_depremler"
+        android:title="Tüm Depremler"
         android:icon="@drawable/ic_list"/>
 </menu>

@@ -1,30 +1,24 @@
 package com.yakisan.depremapi.view.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.get
-import com.yakisan.depremapi.R
-import com.yakisan.depremapi.model.DepremModel
-import com.yakisan.depremapi.service.APIClient
-import com.yakisan.depremapi.viewmodel.EarthquakeViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.observers.DisposableSingleObserver
-import io.reactivex.schedulers.Schedulers
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.yakisan.depremapi.adapter.DepremAdapter
+import com.yakisan.depremapi.databinding.FragmentEarthquakeListBinding
+import com.yakisan.depremapi.viewmodel.EarthquakeListViewModel
 
 class EarthquakeListFragment : Fragment() {
-    lateinit var viewModel : EarthquakeViewModel
+    lateinit var viewModel: EarthquakeListViewModel
+    private val adapter = DepremAdapter(arrayListOf())
+    lateinit var binding: FragmentEarthquakeListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //ViewModel Binding
-        viewModel = ViewModelProviders.of(this).get(EarthquakeViewModel::class.java)
-
     }
 
     override fun onCreateView(
@@ -32,18 +26,61 @@ class EarthquakeListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_earthquake_list, container, false)
+        binding = FragmentEarthquakeListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Son depremi getirir.
-        viewModel.sonDepremiGetir()
+        //ViewModel Binding
+        viewModel = ViewModelProviders.of(this).get(EarthquakeListViewModel::class.java)
+        //Get data from internet
+        viewModel.veriyiGuncelle()
+
+        //Recyclerview Initialize
+        binding.depremlerRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.depremlerRecyclerView.adapter = adapter
+
+        //Veri gözlemleme
+        observeLiveData()
     }
 
 
+    //Veriyi gözlemleme
+    private fun observeLiveData() {
+        //Listeyi gözlemleme
+        viewModel.depremler.observe(viewLifecycleOwner, Observer { depremler ->
+            depremler?.let {
+                binding.depremlerRecyclerView.visibility = View.VISIBLE
+                adapter.updateEarthquakes(depremler)
+            }
+        })
 
+        //Hata mesaji gözlemleme
+        viewModel.errorMessage.observe(viewLifecycleOwner, Observer { hataMesaji ->
+            hataMesaji?.let {
+                if (hataMesaji) {
+                    binding.tvHataMesaji.visibility = View.VISIBLE
+                } else {
+                    binding.tvHataMesaji.visibility = View.GONE
+                }
+            }
+        })
+
+        //Progress gözlemleme
+        viewModel.progress.observe(viewLifecycleOwner, Observer { progress ->
+            progress?.let {
+                if (progress) {
+                    binding.depremlerRecyclerView.visibility = View.GONE
+                    binding.tvHataMesaji.visibility = View.GONE
+                    binding.progressBar.visibility = View.VISIBLE
+                } else {
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
+        })
+    }
 
 
 }

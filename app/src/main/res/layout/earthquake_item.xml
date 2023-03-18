@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="item"
             type="com.yakisan.depremapi.model.DepremModel" />
+
         <variable
             name="listener"
             type="com.yakisan.depremapi.adapter.ClickListener" />
@@ -13,50 +15,55 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        app:cardCornerRadius="5dp"
-        android:backgroundTint="@color/earthquake_item_color"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/earthquake_item_color"
         android:onClickListener="@{listener::clicked}"
-        android:layout_height="wrap_content">
+        android:padding="5dp"
+        app:cardCornerRadius="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
             <!-- string -->
             <ImageView
                 android:id="@+id/ivMapImage"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:scaleType="centerCrop"
                 android:layout_marginEnd="10dp"
-                android:src="@{item.mapImage}"
-                android:contentDescription="Map Image" />
+                android:contentDescription="Map Image"
+                android:downloadImage="@{item.mapImage}"
+                android:scaleType="centerCrop" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="vertical"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:layout_height="match_parent">
+                android:orientation="vertical">
 
                 <!-- double -->
                 <TextView
                     android:id="@+id/tvMagnitude"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="30sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:paddingHorizontal="10dp"
                     android:text="@{Double.toString(item.magnitude)}"
                     android:textColor="@color/red"
-                    android:paddingHorizontal="10dp" />
+                    android:textSize="30sp" />
 
                 <!-- string -->
                 <TextView
                     android:id="@+id/tvRegion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
+                    android:fontFamily="@font/inter_medium"
+                    android:paddingHorizontal="10dp"
                     android:text="@{item.region}"
-                    android:paddingHorizontal="10dp" />
+                    android:textSize="20sp" />
 
 
             </LinearLayout>

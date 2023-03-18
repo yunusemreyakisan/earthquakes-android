@@ -3,19 +3,18 @@ package com.yakisan.depremapi.view
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yakisan.depremapi.R
 import com.yakisan.depremapi.databinding.ActivityMainBinding
 import com.yakisan.depremapi.util.loadFragment
-import com.yakisan.depremapi.view.fragment.AlertFragment
+import com.yakisan.depremapi.view.fragment.LatestEarthquakeFragment
 import com.yakisan.depremapi.view.fragment.EarthquakeListFragment
 
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener{
     lateinit var binding : ActivityMainBinding
     //Bottom Navigation Bar
-    var alertFragment: AlertFragment = AlertFragment()
+    var latestEarthquakeFragment: LatestEarthquakeFragment = LatestEarthquakeFragment()
     var earthquakeListFragment : EarthquakeListFragment = EarthquakeListFragment()
 
 
@@ -26,14 +25,14 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         //set navbar listener
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(this);
-        loadFragment(alertFragment, R.id.flFragment, supportFragmentManager)
+        loadFragment(latestEarthquakeFragment, R.id.flFragment, supportFragmentManager)
     }
 
     //Selected func.
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
-          R.id.alert -> {
-                loadFragment(alertFragment, R.id.flFragment, supportFragmentManager)
+          R.id.latest_earthquake -> {
+                loadFragment(latestEarthquakeFragment, R.id.flFragment, supportFragmentManager)
                 return true
             }
            R.id.list -> {
