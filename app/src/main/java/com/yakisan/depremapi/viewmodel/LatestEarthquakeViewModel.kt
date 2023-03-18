@@ -1,10 +1,18 @@
 package com.yakisan.depremapi.viewmodel
 
+import android.content.Context
 import android.util.Log
+import android.view.View
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.yakisan.depremapi.databinding.FragmentLatestEarthquakeBinding
 import com.yakisan.depremapi.model.DepremModel
 import com.yakisan.depremapi.service.APIClient
+import com.yakisan.depremapi.util.saatiGetir
+import com.yakisan.depremapi.util.tarihiGetir
+import com.yakisan.depremapi.util.utilDownloadImage
+import com.yakisan.depremapi.util.utilPlaceholderOlustur
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
@@ -55,5 +63,21 @@ class LatestEarthquakeViewModel : ViewModel() {
         progress.value = false
         errorMessage.value = false
     }
+
+    //Verileri yazdirma
+    fun verileriYazdir(binding: FragmentLatestEarthquakeBinding ,deprem: ArrayList<DepremModel>, context: Context){
+        binding.tvDetailBuyukluk.text = deprem[0].Magnitude.toString()
+        binding.tvDetailSaat.text = saatiGetir(deprem[0].Time)
+        binding.tvDetailTarih.text = tarihiGetir(deprem[0].Time)
+        binding.tvDetailKonum.text = deprem[0].Region
+        binding.tvDetailDerinlik.text = deprem[0].Depth.toString()
+
+        //Image Bind
+        binding.ivMapImageDetail.utilDownloadImage(
+            deprem[0].MapImage, utilPlaceholderOlustur(context)
+        )
+    }
+
+
 
 }

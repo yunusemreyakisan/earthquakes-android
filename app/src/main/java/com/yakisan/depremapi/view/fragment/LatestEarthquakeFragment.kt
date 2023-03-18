@@ -57,18 +57,7 @@ class LatestEarthquakeFragment : Fragment() {
         viewModel.sonDeprem.observe(viewLifecycleOwner, Observer { deprem ->
             deprem?.let {
                 println("Liste: ${it.get(0)}") //Liste tamamını alır.
-                binding.tvDetailBuyukluk.text = deprem.get(0).Magnitude.toString()
-                binding.tvDetailSaat.text = saatiGetir(deprem.get(0).Time)
-                binding.tvDetailTarih.text = tarihiGetir(deprem.get(0).Time)
-                binding.tvDetailKonum.text = deprem.get(0).Region
-
-                //Image Bind
-                binding.ivMapImageDetail.utilDownloadImage(
-                    deprem[0].MapImage, utilPlaceholderOlustur(
-                        requireContext()
-                    )
-                )
-
+                viewModel.verileriYazdir(binding, deprem, requireContext())
             }
         })
 
@@ -97,5 +86,6 @@ class LatestEarthquakeFragment : Fragment() {
             }
         })
     }
+
 
 }
