@@ -1,5 +1,9 @@
 ## 📱 Clean Arch and MVVM in Android
 
+#### 🧩 API
+**API:** https://api.berkealp.net/kandilli.html 
+
+
 ### 🧪 Potions Used 
 
 | **Libraries**           | **Implementation**                                                                |
@@ -9,8 +13,8 @@
 | Glide for Images | implementation "com.github.bumptech.glide:glide:$glideVersion" |
 | ReactiveX for Async | implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion" |
 
-
+-- and DataBinding for view elements.  
 
 ### ▶️ Demo
-https://user-images.githubusercontent.com/116274664/226135171-c3dbad13-91fd-40cd-8e3b-5edbb3cb761f.mov
+https://user-images.githubusercontent.com/116274664/226135171-c3dbad13-91fd-40cd-8e3b-5edbb3cb761f.mov   
 
