@@ -42,6 +42,9 @@ class EarthquakeListFragment : Fragment() {
         binding.depremlerRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.depremlerRecyclerView.adapter = adapter
 
+        //Swipe Listener
+        viewModel.listeGuncelleSwipe(binding, viewModel)
+
         //Veri gözlemleme
         observeLiveData()
     }

@@ -1,8 +1,11 @@
 package com.yakisan.depremapi.viewmodel
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.yakisan.depremapi.databinding.FragmentEarthquakeListBinding
+import com.yakisan.depremapi.databinding.FragmentLatestEarthquakeBinding
 import com.yakisan.depremapi.model.DepremModel
 import com.yakisan.depremapi.service.APIClient
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -54,5 +57,17 @@ class EarthquakeListViewModel : ViewModel() {
         depremler.value = liste
         progress.value = false
         errorMessage.value = false
+    }
+
+    //Listeyi Guncelle (Swipe)
+    fun listeGuncelleSwipe(binding: FragmentEarthquakeListBinding, viewModel : EarthquakeListViewModel){
+        //Swipe Refresh Layout
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.progressBar.visibility = View.GONE
+            binding.tvHataMesaji.visibility = View.GONE
+            binding.depremlerRecyclerView.visibility = View.GONE
+            viewModel.veriyiGuncelle()
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
     }
 }
