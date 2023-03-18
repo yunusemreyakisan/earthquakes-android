@@ -10,5 +10,6 @@
 
     <!-- Custom Colors -->
     <color name="red">#ff0000</color>
+    <color name="earthquake_item_color">#EEEEEE</color>
 
 </resources>
