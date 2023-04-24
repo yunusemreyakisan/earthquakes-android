@@ -19,7 +19,6 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:backgroundTint="@color/earthquake_item_color"
         android:onClickListener="@{listener::clicked}"
         android:padding="5dp"
         app:cardCornerRadius="5dp">
@@ -52,7 +51,6 @@
                     android:fontFamily="@font/inter_bold"
                     android:paddingHorizontal="10dp"
                     android:text="@{Double.toString(item.magnitude)}"
-                    android:textColor="@color/red"
                     android:textSize="30sp" />
 
                 <!-- string -->

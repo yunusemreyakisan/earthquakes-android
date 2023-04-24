@@ -19,7 +19,7 @@ fun loadFragment(fragment: Fragment, replace : Int, manager : FragmentManager){
 
 //ImageView sınıfına eklenti yapma
 fun ImageView.utilDownloadImage(url: String?, placeholder: CircularProgressDrawable) {
-    val options = RequestOptions().placeholder(placeholder).error(R.color.white)
+    val options = RequestOptions().placeholder(placeholder).error(R.color.md_theme_dark_error)
 
     Glide.with(context)
         .setDefaultRequestOptions(options) //Ozellestirilmis placeholder tanimi
