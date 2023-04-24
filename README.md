@@ -15,5 +15,7 @@
 
 
 ### ▶️ Demo
-https://user-images.githubusercontent.com/116274664/226135171-c3dbad13-91fd-40cd-8e3b-5edbb3cb761f.mov   
+| **M2**  | **M3 (Updated)** |
+| ------------ | ----------- |
+| <video src="https://user-images.githubusercontent.com/116274664/226135171-c3dbad13-91fd-40cd-8e3b-5edbb3cb761f.mov" controls="controls" style="max-width: 730px;"></video> | <video src="https://user-images.githubusercontent.com/116274664/233921204-5de38790-5f0e-47a2-8957-2d1215031170.mov" controls="controls" style="max-width: 730px;"></video> |
 
